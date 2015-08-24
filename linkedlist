@@ -1,0 +1,98 @@
+#include<iostream>
+
+using namespace std;
+
+//typedef struct node node; no difference is we remove this.. why??
+
+class linkedlist
+{
+	private:
+		int top;
+		int max;
+		
+		class node
+		{
+			public:
+				int data;
+				node * link;
+				
+				node()
+				{};
+		}*start = NULL,*ptr;
+	public:	
+		linkedlist()
+		{
+			top = 0;
+			max = 10;
+		}
+		void push(int data)
+		{
+			if(top == max)
+			{
+				
+				cout<<"stack full\n";
+			}
+			else
+			{
+				node *ptr = new node;  
+				ptr -> data = data;
+				if(start == NULL)
+				{
+					start = ptr;
+					ptr -> link = NULL;
+					top++;
+				}
+				else
+				{
+					ptr -> link = start;
+					start =ptr;
+					top++;
+				}
+			}
+			
+			
+		}
+		
+		void pop()
+		{
+			if(top == 0)
+				cout<<"stack empty";
+			else
+			{
+				cout<<"poped element is "<<start->data;
+				ptr = start;
+				start = start -> link;
+				delete ptr;	
+				top--;			
+			}
+		}
+};
+
+
+int main()
+{
+	int data,ch;
+	linkedlist ob1;
+	
+	while (1)
+	{
+		cout<<"\n\npress 1 to push\npress 2 to pop\npress 3 to exit\n";
+		cin>>ch;
+		switch(ch)
+		{
+			case 1:
+				cout<<"\nenter data ";
+				cin>>data;
+				ob1.push(data);
+				break;
+			case 2:
+				ob1.pop();
+				break;
+			case 3:
+				goto endofwhile;
+		}
+	}
+	endofwhile:
+	return 0;
+	
+}
