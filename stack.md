@@ -44,6 +44,7 @@ class stack{
 
 int main()
 {
+
 	int ch;
 	stack ob1;
 	
